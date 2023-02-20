@@ -36,7 +36,7 @@ Make sure you have done all the link:../RUNNING_ON_OPENSHIFT.adoc#_prerequisites
 Install the Helm chart contained under link:./charts/helm-simple.yaml[./charts/helm-simple.yaml] to install the application into OpenShift.
 [source,shell]
 ----
-helm install postgres-simple -f charts/helm-simple.yaml jboss-eap/eap74
+helm install eap7-with-postgres -f charts/helm-simple.yaml jboss-eap/eap74
 ----
 See the link:../RUNNING_ON_OPENSHIFT.adoc#_deploying_with_helm[Deploying with Helm] section for information about when the application will be ready.
 
@@ -45,13 +45,13 @@ See the link:../RUNNING_ON_OPENSHIFT.adoc#_deploying_with_helm[Deploying with He
 Create a few entries in the database by running the following POST commands:
 [source,shell]
 ----
-curl -X POST https://$(oc get route postgres-simple --template='{{ .spec.host }}')/one
-curl -X POST https://$(oc get route postgres-simple --template='{{ .spec.host }}')/two
+curl -X POST https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')/one
+curl -X POST https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')/two
 ----
 Then we can read the entries we added
 [source,shell]
 ----
-curl https://$(oc get route postgres-simple --template='{{ .spec.host }}')
+curl https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')
 ----
 which should return
 [source,shell]
