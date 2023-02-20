@@ -45,13 +45,13 @@ See the link:../RUNNING_ON_OPENSHIFT.adoc#_deploying_with_helm[Deploying with He
 Create a few entries in the database by running the following POST commands:
 [source,shell]
 ----
-curl -X POST https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')/one
-curl -X POST https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')/two
+curl -k -X POST https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')/one
+curl -k -X POST https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')/two
 ----
 Then we can read the entries we added
 [source,shell]
 ----
-curl https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')
+curl -k https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')
 ----
 which should return
 [source,shell]
@@ -96,13 +96,13 @@ See the link:../RUNNING_ON_OPENSHIFT.adoc#_deploying_with_helm[Deploying with He
 Create a few entries in the database by running the following POST commands:
 [source,shell]
 ----
-curl -X POST https://$(oc get route postgres-secret --template='{{ .spec.host }}')/one
-curl -X POST https://$(oc get route postgres-secret --template='{{ .spec.host }}')/two
+curl -k -X POST https://$(oc get route postgres-secret --template='{{ .spec.host }}')/one
+curl -k -X POST https://$(oc get route postgres-secret --template='{{ .spec.host }}')/two
 ----
 Then we can read the entries we added
 [source,shell]
 ----
-curl https://$(oc get route postgres-secret --template='{{ .spec.host }}')
+curl -k https://$(oc get route postgres-secret --template='{{ .spec.host }}')
 ----
 which should return
 [source,shell]
