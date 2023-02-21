@@ -14,14 +14,15 @@ Before looking at the applications we will start the database server. This will 
 
 == Starting the database
 Fist we need to set up a PostgreSQL instance:
+
 ```shell
-oc new-app --name database-server \
+oc new-app --name postgresql \
      --env POSTGRESQL_USER=admin \
      --env POSTGRESQL_PASSWORD=admin \
      --env POSTGRESQL_DATABASE=sampledb \
      postgresql:latest
 ```
-This will create an OpenShift `Deployment` called `database-server` from the image `postgresql:latest`, and expose a service called `database-server`. A service is a host name that can be used internally in the cluster. In other words, from inside the OpenShift project we will be able to access our database server via `database-server` rather than needing to know the IP address of the pod(s) running it.
+This will create an OpenShift `Deployment` called `postgresql` from the image `postgresql:latest`, and expose a service called `postgresql`. A service is a host name that can be used internally in the cluster. In other words, from inside the OpenShift project we will be able to access our database server via `database-server` rather than needing to know the IP address of the pod(s) running it.
 
 The `POSTGRESQL_USER`, `POSTGRESQL_PASSWORD` and `POSTGRESQL_DATABASE` environment variables used are understood by the `postgresql:latest` image and set the username/password and the name of the database to use.
 
@@ -45,18 +46,18 @@ See the link:../RUNNING_ON_OPENSHIFT.adoc#_deploying_with_helm[Deploying with He
 Create a few entries in the database by running the following POST commands:
 [source,shell]
 ----
-curl -k -X POST https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')/one
-curl -k -X POST https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')/two
+curl -k -X POST https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')/app?value=Hello+World
+curl -k -X POST https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')/app?value=Bonjour+le+Monde
 ----
 Then we can read the entries we added
 [source,shell]
 ----
-curl -k https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')
+curl -k https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')/app
 ----
 which should return
 [source,shell]
 ----
-["one","two"]
+["Hello World","Bonjour le Monde"]
 ----
 
 === Explaining the 'simple' setup application configuration
@@ -96,18 +97,18 @@ See the link:../RUNNING_ON_OPENSHIFT.adoc#_deploying_with_helm[Deploying with He
 Create a few entries in the database by running the following POST commands:
 [source,shell]
 ----
-curl -k -X POST https://$(oc get route postgres-secret --template='{{ .spec.host }}')/one
-curl -k -X POST https://$(oc get route postgres-secret --template='{{ .spec.host }}')/two
+curl -k -X POST https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')/app?value=Hello+World
+curl -k -X POST https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')/app?value=Bonjour+le+Monde
 ----
 Then we can read the entries we added
 [source,shell]
 ----
-curl -k https://$(oc get route postgres-secret --template='{{ .spec.host }}')
+curl -k https://$(oc get route eap7-with-postgres --template='{{ .spec.host }}')/app
 ----
 which should return
 [source,shell]
 ----
-["one","two"]
+["Hello World","Bonjour le Monde"]
 ----
 
 === Explaining the 'using secrets' setup application configuration
@@ -129,8 +130,8 @@ The following commands will delete the database once you are done with the quick
 
 [source,shell]
 ----
-oc delete deployment database-server
-oc delete service database-server
+oc delete deployment postgresql
+oc delete service postgresql
 ----
 
 To delete the secret (for the 'using secrets' flavour of this quickstart):
