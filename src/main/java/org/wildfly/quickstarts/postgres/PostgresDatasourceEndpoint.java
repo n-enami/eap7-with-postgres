@@ -19,19 +19,19 @@
 
 package org.wildfly.quickstarts.postgres;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import java.util.List;
-
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 /**
  * @author <a href="mailto:kabir.khan@jboss.com">Kabir Khan</a>
@@ -42,9 +42,9 @@ public class PostgresDatasourceEndpoint {
     TransactionalBean bean;
 
     @POST
-    @Path("{value}")
     @Consumes(MediaType.TEXT_PLAIN)
-    public Response store(@PathParam("value") String value) {
+    public Response store(@QueryParam("value") String value) {
+        System.out.println("value = " + value);
         bean.storeValue(value);
         return Response.ok().build();
     }
