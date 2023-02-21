@@ -25,6 +25,6 @@ import javax.ws.rs.core.Application;
 /**
  * @author <a href="mailto:kabir.khan@jboss.com">Kabir Khan</a>
  */
-@ApplicationPath("")
+@ApplicationPath("app")
 public class PostgresDatasourceApp extends Application {
 }
