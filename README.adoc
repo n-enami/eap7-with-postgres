@@ -1,6 +1,7 @@
-= Postgres Quickstart
+= Connect JBoss EAP 7 to a PostgreSQL database on OpenShift
 
 == The Application
+
 The `src/main` folder contains a simple application exposing a REST endpoint which allows users to post data. Posted data is stored in a database. Then there is an endpoint allowing users to get data stored in the database.
 
 Before deploying the quickstart we need to start a database on OpenShift. Since when setting up a database on OpenShift we are dealing with sensitive information sunch as database login credentials, we will do this two ways:
