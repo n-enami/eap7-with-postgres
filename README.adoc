@@ -31,7 +31,7 @@ The above command will start the database quickly.
 
 == Simple setup
 
-Make sure you have done all the link:../RUNNING_ON_OPENSHIFT.adoc#_prerequisites[prerequisites] and link:../RUNNING_ON_OPENSHIFT.adoc#_selectingcreating_a_project[selected/created a project].
+Make sure you have done all the https://github.com/jboss-eap-up-and-running/docs/blob/main/RUNNING_ON_OPENSHIFT.adoc#prerequisites[prerequisites] and https://github.com/jboss-eap-up-and-running/docs/blob/main/RUNNING_ON_OPENSHIFT.adoc#selectingcreating-a-project[selected/created a project].
 
 
 === Deploying the 'simple' setup quickstart
@@ -40,7 +40,7 @@ Install the Helm chart contained under link:./charts/helm-simple.yaml[./charts/h
 ----
 helm install eap7-with-postgres -f charts/helm-simple.yaml jboss-eap/eap74
 ----
-See the link:../RUNNING_ON_OPENSHIFT.adoc#_deploying_with_helm[Deploying with Helm] section for information about when the application will be ready.
+See the https://github.com/jboss-eap-up-and-running/docs/blob/main/RUNNING_ON_OPENSHIFT.adoc#deploying-with-helm[Deploying with Helm] section for information about when the application will be ready.
 
 === Running the 'simple' setup application
 
@@ -66,18 +66,18 @@ link:./charts/helm-simple.yaml[./charts/helm-simple.yaml] contains the configura
 
 First let us examine the `build` section of the Helm chart.
 
-It says to use the `postgres` directory under the quickstart as outlined in link:../RUNNING_ON_OPENSHIFT.adoc#_introduction_to_helm_charts[Introduction to Helm Charts].
+It says to use the `postgres` directory under the quickstart as outlined in https://github.com/jboss-eap-up-and-running/docs/blob/main/RUNNING_ON_OPENSHIFT.adoc#introduction-to-helm-charts[Introduction to Helm Charts].
 
-We specify that we want to use the EAP datasources feature pack and provision the `cloud-server` and `postgresql-datasource` layers as mentioned in link:../RUNNING_ON_OPENSHIFT.adoc#_trimming_the_provisioned_server[Trimming the provisioned server] and link:../RUNNING_ON_OPENSHIFT.adoc#_adding_galleon_feature_packs[Adding Galleon Feature Packs] sections.
+We specify that we want to use the EAP datasources feature pack and provision the `cloud-server` and `postgresql-datasource` layers as mentioned in https://github.com/jboss-eap-up-and-running/docs/blob/main/RUNNING_ON_OPENSHIFT.adoc#trimming-the-provisioned-server[Trimming the provisioned server] and https://github.com/jboss-eap-up-and-running/docs/blob/main/RUNNING_ON_OPENSHIFT.adoc#adding-galleon-feature-packs[Adding Galleon Feature Packs] sections.
 
-The `POSTGRESQL_DRIVER_VERSION` environment variable sets the version of the PostgreSQL driver as explained in link:../RUNNING_ON_OPENSHIFT.adoc#_setting_environment_variables[Setting environment variables].
+The `POSTGRESQL_DRIVER_VERSION` environment variable sets the version of the PostgreSQL driver as explained in https://github.com/jboss-eap-up-and-running/docs/blob/main/RUNNING_ON_OPENSHIFT.adoc#setting-environment-variables[Setting environment variables].
 
 In the `deploy section` we hardcode environment variables to connect to the database. The `postgresql-datasource` results in a PostgreSQL datasource being added to the server configuration. This datasource configuration, in turn, contains expressions that can be resolved from the listed environment variables.
 
 == Using secrets setup
 
 === Adding our secret
-link:./postgres-db-secret.yaml[openshift-secret.yaml] contains a secret called `postgres-db-secret` with base64 encoded values of the most sensitive data needed to connect to our database. See link:../RUNNING_ON_OPENSHIFT.adoc#_adding_a_secret_to_openshift[Adding a secret to OpenShift] for more information.
+link:./postgres-db-secret.yaml[openshift-secret.yaml] contains a secret called `postgres-db-secret` with base64 encoded values of the most sensitive data needed to connect to our database. See https://github.com/jboss-eap-up-and-running/docs/blob/main/RUNNING_ON_OPENSHIFT.adoc#adding-a-secret-to-openshift[Adding a secret to OpenShift] for more information.
 
 To add this secret, run:
 [source, yaml]
@@ -91,7 +91,7 @@ Install the Helm chart contained under link:./charts/helm-secret.yaml[./charts/h
 ----
 helm install postgres-secret -f charts/helm-secret.yaml jboss-eap/eap74
 ----
-See the link:../RUNNING_ON_OPENSHIFT.adoc#_deploying_with_helm[Deploying with Helm] section for information about when the application will be ready.
+See the https://github.com/jboss-eap-up-and-running/docs/blob/main/RUNNING_ON_OPENSHIFT.adoc#deploying-with-helm[Deploying with Helm] section for information about when the application will be ready.
 
 === Running the 'using secrets' setup application
 
@@ -117,13 +117,13 @@ link:./charts/helm-simple.yaml[./charts/helm-simple.yaml] contains the configura
 
 First let us examine the `build` section of the Helm chart.
 
-It says to use the `postgres` directory under the quickstart as outlined in link:../RUNNING_ON_OPENSHIFT.adoc#_introduction_to_helm_charts[Introduction to Helm Charts].
+It says to use the `postgres` directory under the quickstart as outlined in https://github.com/jboss-eap-up-and-running/docs/blob/main/RUNNING_ON_OPENSHIFT.adoc#_introduction_to_helm_charts[Introduction to Helm Charts].
 
-We specify that we want to use the EAP datasources feature pack and provision the `cloud-server` and `postgresql-datasource` layers as mentioned in link:../RUNNING_ON_OPENSHIFT.adoc#_trimming_the_provisioned_server[Trimming the provisioned server] and link:../RUNNING_ON_OPENSHIFT.adoc#_adding_galleon_feature_packs[Adding Galleon Feature Packs] sections.
+We specify that we want to use the EAP datasources feature pack and provision the `cloud-server` and `postgresql-datasource` layers as mentioned in https://github.com/jboss-eap-up-and-running/docs/blob/main/RUNNING_ON_OPENSHIFT.adoc#_trimming_the_provisioned_server[Trimming the provisioned server] and https://github.com/jboss-eap-up-and-running/docs/blob/main/RUNNING_ON_OPENSHIFT.adoc#_adding_galleon_feature_packs[Adding Galleon Feature Packs] sections.
 
-The `POSTGRESQL_DRIVER_VERSION` environment variable sets the version of the PostgreSQL driver as explained in link:../RUNNING_ON_OPENSHIFT.adoc#_setting_environment_variables[Setting environment variables].
+The `POSTGRESQL_DRIVER_VERSION` environment variable sets the version of the PostgreSQL driver as explained in https://github.com/jboss-eap-up-and-running/docs/blob/main/RUNNING_ON_OPENSHIFT.adoc#_setting_environment_variables[Setting environment variables].
 
-In the `deploy section` we hardcode environment variables to connect to the database. The `postgresql-datasource` results in a PostgreSQL datasource being added to the server configuration. This datasource configuration, in turn, contains expressions that can be resolved from the listed environment variables. The environment variables `POSTGRESQL_DATABASE`, `POSTGRESQL_USER` and `POSTGRESQL_PASSWORD` are set from entries in the `postgres-db-secret` secret we created earlier. See link:../RUNNING_ON_OPENSHIFT.adoc#_mapping_individual_values_from_a_configmapsecret_to_environment_variables[Mapping individual values from a ConfigMap/Secret to environment variables] for more details.
+In the `deploy section` we hardcode environment variables to connect to the database. The `postgresql-datasource` results in a PostgreSQL datasource being added to the server configuration. This datasource configuration, in turn, contains expressions that can be resolved from the listed environment variables. The environment variables `POSTGRESQL_DATABASE`, `POSTGRESQL_USER` and `POSTGRESQL_PASSWORD` are set from entries in the `postgres-db-secret` secret we created earlier. See https://github.com/jboss-eap-up-and-running/docs/blob/main/RUNNING_ON_OPENSHIFT.adoc#_mapping_individual_values_from_a_configmapsecret_to_environment_variables[Mapping individual values from a ConfigMap/Secret to environment variables] for more details.
 
 == Deleting the database
 
