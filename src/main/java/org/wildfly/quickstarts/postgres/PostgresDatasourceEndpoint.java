@@ -44,7 +44,6 @@ public class PostgresDatasourceEndpoint {
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
     public Response store(@QueryParam("value") String value) {
-        System.out.println("value = " + value);
         bean.storeValue(value);
         return Response.ok().build();
     }
